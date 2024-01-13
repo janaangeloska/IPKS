@@ -1,5 +1,38 @@
-/*Да се направи веб страница каде при клик на копче на страницата ќе се прикаже слика, која се
+<!-- Да се направи веб страница каде при клик на копче на страницата ќе се прикаже слика, која се
 избира по случаен избор од дадените слики:
 http://data.whicdn.com/images/15145864/large.jpg
 https://cdn0.vox-cdn.com/uploads/chorus_image/image/48151611/8559004265_4b81d299ce.0.0.jpg
-https://farm5.staticflickr.com/4060/4567292488_5d3f4b05f6_z.jpg*/
+https://farm5.staticflickr.com/4060/4567292488_5d3f4b05f6_z.jpg
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>function randomPicGenerator() {
+        var img = document.getElementById("random");
+        var random = Math.round((Math.random() * 3) + 1);
+        if (random === 1) {
+            img.src = "https://designmodo.com/wp-content/uploads/2014/07/free-photos.jpg"
+            console.log("generated")
+        } else if (random === 2) {
+            img.src = "https://farm5.staticflickr.com/4060/4567292488_5d3f4b05f6_z.jpg"
+            console.log("generated")
+        } else {
+            img.src = "https://wallup.net/wp-content/uploads/2017/03/28/401266-landscape-road-forest-748x421.jpg"
+            console.log("generated")
+        }
+    }
+
+
+    </script>
+</head>
+<body>
+<div>
+    <input type="button" onclick="randomPicGenerator()" value="Generate">
+</div>
+<div>
+    <img id="random">
+</div>
+</body>
+</html>
