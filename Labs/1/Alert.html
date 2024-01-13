@@ -1,7 +1,31 @@
-/*Да се направи веб страница каде од тастатура (преку prompt) ќе се внесат 3 стрингови. Програмата
+<!-- Да се направи веб страница каде од тастатура (преку prompt) ќе се внесат 3 стрингови. Програмата
 треба во alert прозорец да го испечати најдолгиот збор во рамките на сите 3 стрингови.
 Пример
 Влез: Прва лабораториска вежба
 Во оваа лабораторија е многу жешко
 Надвор е убав ден
-Излез: лабораториска*/
+Излез: лабораториска
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        var string1 = prompt("Внесете прв стринг: ");
+        var string2 = prompt("Внесете втор стринг: ");
+        var string3 = prompt("Внесете трет стринг: ");
+        var allWords = (string1 + " " + string2 + " " + string3).split(" ");
+        var longestWord = "";
+
+        for (var i = 0; i < allWords.length; i++) {
+            if (allWords[i].length > longestWord.length) {
+                longestWord = allWords[i];
+            }
+        }
+        alert("Најдолг збор: " + longestWord);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
