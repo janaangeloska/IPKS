@@ -1,3 +1,41 @@
-/*Да се направи веб страница каде преку текстуални полиња (прикажани на сликата подолу) ќе се
+<!-- Да се направи веб страница каде преку текстуални полиња (прикажани на сликата подолу) ќе се
 внесат два комплексни броеви. Страницата ќе содржи и копче Add кое при клик ќе ги собери двата
-комплексни броеви и резулатот ќе го запише во две текстуални полиња.*/
+комплексни броеви и резулатот ќе го запише во две текстуални полиња.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>function zbir() {
+        var real1 = document.getElementById("sobirokReal1")
+        var real2 = document.getElementById("sobirokReal2")
+        var imagi1 = document.getElementById("sobirokImagin1")
+        var imagi2 = document.getElementById("sobirokImagin2")
+        var zbirreal = document.getElementById("zbirReal");
+        var zbirimagi = document.getElementById("zbirImagin");
+        zbirreal.value = parseInt(real1.value) + parseInt(real2.value);
+        zbirimagi.value = parseInt(imagi1.value) + parseInt(imagi2.value);
+    }
+    </script>
+</head>
+<body>
+<div>
+    <input id="sobirokReal1" type="text">
+    <input id="sobirokImagin1" type="text">
+    <span><em>i</em></span>
+    <br>
+    <input id="sobirokReal2" type="text">
+    <input id="sobirokImagin2" type="text">
+    <span><em>i</em></span>
+    <br>
+    <button onclick="zbir()">Add</button>
+    <br>
+    <input id="zbirReal" type="text">
+    <input id="zbirImagin" type="text">
+    <span><em>i</em></span>
+
+</div>
+</body>
+</html>
