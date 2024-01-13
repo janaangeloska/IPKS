@@ -1,4 +1,41 @@
-/*Да се направи веб страница каде од тастатура (преку prompt) се чита мобилен број во следниот
+<!-- Да се направи веб страница каде од тастатура (преку prompt) се чита мобилен број во следниот
 формат XXYYYZZZ (пр. 71298486). Програмата треба во конзола да го испечати во формат
 XXX/YYY-ZZZ (пр. 071/298-486). Дополнително, треба да го испечати и името на операторот.
-(070/071/072 - T-mobile, 075/076 – One, 077/078 – Vip).*/
+(070/071/072 - T-mobile, 075/076 – One, 077/078 – Vip).
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        var tel = prompt("Внеси го телефонскиот број: ");
+        tel = parseInt(tel);
+        var prvdel, vtordel, tretdel, operator;
+
+        if (!isNaN(tel)) {
+            if (tel >= 10000000 && tel <= 99999999) {
+                prvdel = parseInt(tel / 1000000);
+                vtordel = parseInt(tel / 1000 % 1000);
+                tretdel = parseInt(tel % 1000);
+                if (prvdel === 70 || prvdel === 71 || prvdel === 72) {
+                    operator = "T-mobile";
+                } else if (prvdel === 75 || prvdel === 76) {
+                    operator = "One";
+                } else if (prvdel === 77 || prvdel === 78) {
+                    operator = "Vip";
+                } else {
+                    operator = "Nepoznat";
+                }
+                console.log("Контакт тел: 0" + prvdel + "/" + vtordel + "-" + tretdel + " " + operator);
+            } else {
+                console.log("Погрешен внесен формат!");
+            }
+        } else {
+            console.log("Погрешен внес!");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
