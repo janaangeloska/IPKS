@@ -1,2 +1,31 @@
-/*Да се направи се напише функцијата removeColor() која во конзола ќе ја испечати тековно
-селектираната од листата и ќе се избрише од истата.*/
+<!-- Да се направи се напише функцијата removeColor() која во конзола ќе ја испечати тековно
+селектираната од листата и ќе се избрише од истата.
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function removecolor() {
+        var x=document.getElementsByTagName("option");
+        var y=document.getElementById("colorSelect").value;
+            for (let i = 0; i < x.length; i++) {
+                if(x[i].value===y){
+                    x[i].remove();
+                }
+            }
+            console.log("Selected and removed Color: " + y);
+    }
+    </script>
+</head>
+<body><form>
+    <select id="colorSelect">
+        <option>Red</option>
+        <option>Green</option>
+        <option>White</option>
+        <option>Black</option>
+    </select>
+    <input type="button" onclick="removecolor()" value="Select and Remove"><br></form>
+</body>
+</html>
