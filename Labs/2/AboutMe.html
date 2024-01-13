@@ -1,4 +1,4 @@
-/*Даден е следниот HTML:
+<!-- Даден е следниот HTML:
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,5 +17,36 @@
 Напишете JavaScript кој ќе ги направи следните промени:
 На body тагот ќе постави Arial фонт
 Ќе ја пополни содржината на span таговите со соодвените информации (име, презиме и град)
-На секој од li таговите ќе им постави црвена боја на позадина*/
+На секој од li таговите ќе им постави црвена боја на позадина
+ -->
 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function (){
+            var bod=document.getElementsByTagName("body")[0];
+            bod.style="font-family: Arial";
+
+            document.getElementById("name").innerHTML="Jana";
+            document.getElementById("index").innerHTML="ID";
+            document.getElementById("hometown").innerHTML="City";
+
+            var lis=document.getElementsByTagName("li");
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].style="background: red";
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>About Me</h1>
+<ul>
+    <li>Name: <span id="name"></span>
+    <li>Index: <span id="index"></span>
+    <li>Hometown: <span id="hometown"></span>
+</ul>
+</body>
+</html>
