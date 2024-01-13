@@ -1,5 +1,27 @@
-/*Да се направи веб страница во која ќе има 2 input полиња (со објаснување што треба да се внесе
+<!-- Да се направи веб страница во која ќе има 2 input полиња (со објаснување што треба да се внесе
 во овие полиња) и едно копче Calculate, за внесување на тежина (во килограми) и висина (во
 центиметри) на човек. При клик на копчето Calculate, треба да се пресмета BMI на човекот и да се
 запише во alert прозорец. Формула: BMI = kg/m2 (тежината во килограми поделена со висината во
-метри на квадрат.)*/
+метри на квадрат.)
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function BMI() {
+            var tezhina = parseFloat(document.getElementById("tezhina").value);
+            var visina = parseFloat(document.getElementById("visina").value) / 100;
+            var BMI = parseFloat(tezhina / (visina * visina));
+            alert("Вашето BMI е: " + BMI);
+        }
+    </script>
+</head>
+<body>
+<label for="tezhina">Тежина(кг)</label>
+<input type="text" id="tezhina" placeholder="Внесете тежина">
+<label for="visina">Висина(см): </label>
+<input type="text" id="visina" placeholder="Внесете висина">
+<button onclick="BMI()">Calculate</button>
+</body>
+</html>
