@@ -1,4 +1,84 @@
-/*Да се изработи калкулатор кој ќе изгледа како на. Калкулаторот функционира на
+<!-- Да се изработи калкулатор кој ќе изгледа како на. Калкулаторот функционира на
 следниов начин. Се внесуваат два броја во input полињата a и b. Потоа од radio buttons се избира
 едно, односно се селектира една од операциите. По избирање на копчето „Пресметај“ се
-појавува текст со резултат.*/
+појавува текст со резултат.
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+    <script>
+        function presmetaj() {
+            var operators = document.getElementsByName("oper");
+            var operator1 = parseFloat(document.getElementById("a").value);
+            var operator2 = parseFloat(document.getElementById("b").value);
+            var result = document.getElementById("rezultat");
+            var action = "";
+
+            for (var i = 0; i < operators.length; i++) {
+                if (operators[i].checked) {
+                    action = operators[i].id;
+                    break;
+                }
+            }
+
+            if (action === "plus") {
+                result.innerHTML = operator1 + operator2;
+            } else if (action === "minus") {
+                result.innerHTML = operator1 - operator2;
+            } else if (action === "mnoz") {
+                result.innerHTML = operator1 * operator2;
+            } else if (action === "del") {
+                if (operator2 !== 0) {
+                    result.innerHTML = operator1 / operator2;
+                } else {
+                    result.innerHTML = "Cannot divide by zero."
+                }
+            } else if (action === "sin") {
+                result.innerHTML = Math.sin(operator1);
+            } else if (action === "cos") {
+                result.innerHTML = Math.cos(operator1);
+
+            } else if (action === "tg") {
+                result.innerHTML = Math.tan(operator1);
+
+            } else if (action === "cel") {
+                result.innerHTML = Math.ceil(operator1);
+            } else if (action === "stepen") {
+                result.innerHTML = Math.pow(operator1, operator2);
+            } else if (action === "koren") {
+                result.innerHTML = Math.sqrt(operator1);
+            }
+            console.log(action);
+        }
+    </script>
+</head>
+<body>
+<h1>Калкулатор</h1>
+<div>
+    <div style="text-align:left; float:left">
+        <p>а <input id="a" style="width:15px"/>
+            b <input id="b" style="width:15px"/></p>
+        <p>
+            <input id="plus" type="radio" name="oper" checked>a+b
+            <input id="minus" type="radio" name="oper">a-b
+            <input id="mnoz" type="radio" name="oper">a*b
+            <input id="del" type="radio" name="oper">a/b
+            <br>
+            <input id="sin" type="radio" name="oper">sin(a)
+            <input id="cos" type="radio" name="oper">cos(a)
+            <input id="tg" type="radio" name="oper">tg(a)
+            <br>
+            <input id="cel" type="radio" name="oper">[a]
+            <input id="stepen" type="radio" name="oper">a<sup>b</sup>
+            <input id="koren" type="radio" name="oper">&radic;<span style="text-decoration:
+overline">a</span>
+        </p>
+        <button onclick="presmetaj()">Пресметај</button>
+        <p id="rezultat"></p>
+    </div>
+</div>
+<br/>
+</body>
+</html>
