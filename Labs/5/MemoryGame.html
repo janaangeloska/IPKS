@@ -21,6 +21,93 @@
             height: 120px;
         }
     </style>
+    <script>
+        var ids = ['t11', 't12', 't13','t14', 't21','t22','t23', 't24', 't31', 't32', 't33', 't34', 't41', 't42', 't43', 't44'];
+        const pictures = [
+            'coal.jpg',
+            'diamond.jpg',
+            'emerald.jpg',
+            'gold.jpg',
+            'iron.jpg',
+            'netherite.jpg',
+            'redstone.jpg',
+            'lapis.jpg',
+            'coal.jpg',
+            'diamond.jpg',
+            'emerald.jpg',
+            'gold.jpg',
+            'iron.jpg',
+            'netherite.jpg',
+            'redstone.jpg',
+            'lapis.jpg'
+        ];
+
+
+        var count = 0
+        var guessed = 0;
+        function uncover(element){
+
+            if(window.getComputedStyle(element).opacity ==='1') {
+                return;
+            }
+
+            if(count===2){
+                count = 0;
+
+                var all = document.getElementsByTagName('img');
+                var opened = [];
+                for (i=0; i<all.length; i++){
+                    if(all[i].style.opacity === "1")
+                        opened.push(all[i]);
+                }
+
+                if(opened[0].attributes.src.value === opened[1].attributes.src.value){
+                    opened[0].style.opacity = "0.9";
+                    opened[1].style.opacity = "0.9";
+
+                    guessed++;
+                    if(guessed===8)
+                        alert("Congratulations! You won!");
+                    return;
+                }
+
+                opened[0].style.opacity = "0";
+                opened[1].style.opacity = "0";
+
+                return;
+            }
+
+            element.style.opacity = "1";
+            count++;
+
+        }
+        function shuffle(){
+            for (let i = pictures.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const temp = pictures[i];
+                pictures[i] = pictures[j];
+                pictures[j] = temp;
+            }
+
+            for (i=0; i<16; i++){
+                document.getElementById(ids[i])
+                    .style
+                    .backgroundImage = "url(cover.jpg)";
+            }
+        }
+
+        window.onload = function (){
+            reset();
+        }
+
+        function reset(){
+            shuffle();
+            for (i=0; i<16; i++) {
+                document.querySelector(`td#${ids[i]} img`).src = pictures[i];
+                document.querySelector(`td#${ids[i]} img`).style.opacity = "0";
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>Meморија</h1>
@@ -54,92 +141,4 @@
     <button onclick="reset()"> RESET</button>
 </div>
 <br/>
-
-<script>
-    var ids = ['t11', 't12', 't13','t14', 't21','t22','t23', 't24', 't31', 't32', 't33', 't34', 't41', 't42', 't43', 't44'];
-    const pictures = [
-        'coal.jpg',
-        'diamond.jpg',
-        'emerald.jpg',
-        'gold.jpg',
-        'iron.jpg',
-        'netherite.jpg',
-        'redstone.jpg',
-        'lapis.jpg',
-        'coal.jpg',
-        'diamond.jpg',
-        'emerald.jpg',
-        'gold.jpg',
-        'iron.jpg',
-        'netherite.jpg',
-        'redstone.jpg',
-        'lapis.jpg'
-    ];
-
-
-    var count = 0
-    var guessed = 0;
-    function uncover(element){
-
-        if(window.getComputedStyle(element).opacity ==='1') {
-            return;
-        }
-
-        if(count===2){
-            count = 0;
-
-            var all = document.getElementsByTagName('img');
-            var opened = [];
-            for (i=0; i<all.length; i++){
-                if(all[i].style.opacity === "1")
-                    opened.push(all[i]);
-            }
-
-            if(opened[0].attributes.src.value === opened[1].attributes.src.value){
-                opened[0].style.opacity = "0.9";
-                opened[1].style.opacity = "0.9";
-
-                guessed++;
-                if(guessed===8)
-                    alert("Congratulations! You won!");
-                return;
-            }
-
-            opened[0].style.opacity = "0";
-            opened[1].style.opacity = "0";
-
-            return;
-        }
-
-        element.style.opacity = "1";
-        count++;
-
-    }
-    function shuffle(){
-        for (let i = pictures.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            const temp = pictures[i];
-            pictures[i] = pictures[j];
-            pictures[j] = temp;
-        }
-
-        for (i=0; i<16; i++){
-            document.getElementById(ids[i])
-                .style
-                .backgroundImage = "url(cover.jpg)";
-        }
-    }
-
-    window.onload = function (){
-        reset();
-    }
-
-    function reset(){
-        shuffle();
-        for (i=0; i<16; i++) {
-            document.querySelector(`td#${ids[i]} img`).src = pictures[i];
-            document.querySelector(`td#${ids[i]} img`).style.opacity = "0";
-        }
-    }
-</script>
 </body>
