@@ -1,3 +1,49 @@
-/*Да се напише програма во JavaScript која пресметува волумен на цилиндар (со помош на
+<!-- Да се напише програма во JavaScript која пресметува волумен на цилиндар (со помош на
 класа/прототип)
-Волумен на цилиндар = πr^2h*/
+Волумен на цилиндар = πr^2h
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3</title>
+    <script>
+        class Cylinder{
+            pi=Math.PI;
+            radius;
+            height;
+            constructor(radius, height) {
+                this.radius = radius;
+                this.height = height;
+            }
+            volumen(){
+            return  this.pi * this.radius * this.radius * this.height;
+            }
+            displayVolume(){
+                console.log(this.volumen());
+            }
+        }
+        function calculate() {
+            var rad = parseFloat(document.getElementById('r').value);
+            var hei = parseFloat(document.getElementById('h').value);
+            const Cylinder1 = new Cylinder(rad, hei);
+            Cylinder1.displayVolume();
+        }
+    </script>
+</head>
+<body>
+<div>
+    <label>
+        <div>Enter the height of the cylinder:</div>
+        <input type="text" id="h">
+    </label>
+    <label>
+        <div>Enter the radius of the cylinder:</div>
+        <input type="text" id="r">
+    </label>
+    <div>
+        <button onclick="calculate()">Calculate</button>
+    </div>
+</div>
+</body>
+</html>
