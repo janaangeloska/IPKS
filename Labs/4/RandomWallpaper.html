@@ -1,5 +1,56 @@
-/*Да се изработи форма која се состои од две radio buttons, едно поле за внесување текст и едно
+<!-- Да се изработи форма која се состои од две radio buttons, едно поле за внесување текст и едно
 копче. Кога е избрано color во полето value се внесува боја и со притискање на копчето „Промени“
 позадината се менува во избраната боја. Ако е избрано Image тогаш во полето value се
 внесува url од некоја слика и со притискање на копчето „Промени“ таа слика се поставува за
-позадина.*/
+позадина.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #selection{
+            margin:20px;
+            margin-left: 77px;
+        }
+        #promeni{
+            margin-left: 144px;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function promeniPozadina() {
+            var color = document.getElementById('color');
+            var image = document.getElementById('image');
+            var bg=document.getElementById("value").value;
+            if(color.checked){
+                document.body.style.background=bg;
+            }else if(image.checked){
+                document.body.style.background='url("'+bg+'")'
+                document.body.style.backgroundSize = 'cover';
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Промена на позадина</h1>
+<div id="selection">
+<!--purple-->
+<input type="radio" id="color" name="select">
+<label for="color">Color</label>
+<!--https://picsum.photos/200-->
+<input type="radio" id="image" name="select">
+<label for="image">Image</label>
+</div>
+<div>
+    <label id="vrednost">Value:
+        <input type="text" id="value">
+    </label>
+</div>
+<div>
+    <button id="promeni" onclick="promeniPozadina()">Промени</button>
+</div>
+</body>
+</html>
