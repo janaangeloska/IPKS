@@ -1,4 +1,4 @@
-/*Да се направи игра во која корисникот треба да погоди четири цифрен цел број од 10 обиди.
+<!-- Да се направи игра во која корисникот треба да погоди четири цифрен цел број од 10 обиди.
 Формата за играта е прикажана на. Играта се игра на следниов начин. Пред почетокот на
 играта се генерира случаен четирицифтен број (1000 – 9999). Тоа е бројот кој играчот треба да го
 погоди. Играчот внесува четирицифрен број во input полето и притиска на копчето „Погоди“. Се
@@ -7,4 +7,99 @@
 број се испишува порака дека успеал да погоди. Ако по завршувањето на 10те обиди играчот не
 успее да го погоди бројот се испишува соодветна порака дека не успеал да го погоди. На копчето
 „Од почеток“ играчот во секој момент може да ја стартува играта од почеток (со нов случаен
-број).*/
+број).
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PogoduvachNaRandomBroj</title>
+    <style>
+        #counter {
+            display: inline;
+        }
+    </style>
+    <script>
+        let guesses = [];
+        let randomNr;
+        let flag = 0;
+
+        function pogodi() {
+            var vnes = parseInt(document.getElementById("guess").value);
+            var pomoshenVnes = document.getElementById("guess").value.toString();
+            var pomoshenRandom = randomNr.toString();
+            var naMesto = 0;
+            var vklucheniCifri = 0;
+            if (vnes > 10000 || vnes < 1000) {
+                alert("Vnesi 4 cifren broj!");
+                return;
+            }
+            for (let i = 0; i < 4; i++) {
+                if (pomoshenVnes[i] === pomoshenRandom[i]) {
+                    naMesto++;
+                }
+                if (pomoshenRandom.includes(pomoshenVnes[i])) {
+                    vklucheniCifri++;
+                }
+            }
+
+
+            let novaRechenica = "Има " + Math.max(vklucheniCifri - naMesto, 0) + ", на место " + naMesto + " " + vnes;
+            guesses.push(novaRechenica);
+
+            var pogodoci = document.getElementById("prikaz");
+            pogodoci.innerHTML = "";
+
+            for (let i = 0; i < guesses.length; i++) {
+                var novObid = document.createElement("div");
+                novObid.innerHTML = guesses[i];
+                pogodoci.appendChild(novObid);
+            }
+            document.getElementById("counter").innerText = guesses.length;
+            if (vnes === randomNr) {
+                var pogodokMessage = document.createElement("div");
+                pogodokMessage.innerHTML = "Погодок!!!";
+                pogodoci.appendChild(pogodokMessage);
+                document.getElementById("pogodiKopche").disabled = true;
+                flag = 1;
+            }
+            if (guesses.length >= 10 && flag === 0) {
+                var odPocetok = document.createElement("div");
+                odPocetok.innerHTML = "Не успеавте да погодите од 10 обиди. Бројот е " + randomNr + ".";
+                pogodoci.appendChild(odPocetok);
+                document.getElementById("pogodiKopche").disabled = true;
+            }
+        }
+
+        function odPocetok() {
+            document.getElementById("counter").innerText = 0;
+            guesses = [];
+            document.getElementById("pogodiKopche").disabled = false;
+            randomNr = Math.round(Math.random() * 9000) + 1000;
+            document.getElementById("prikaz").innerHTML = "";
+            console.log(randomNr);
+        }
+
+        window.onload = function () {
+            odPocetok();
+        }
+
+
+    </script>
+</head>
+<body>
+<div>
+    <div style="text-align:right; float:left">
+        <label id="obid">Обиди </label>
+        <p id="counter"></p>
+        <p>Погодок: <input id="guess" style="width:150px"/></p>
+        <button id="pogodiKopche" onclick="pogodi()">Погоди</button>
+        <button onclick="odPocetok()">Од почеток</button>
+    </div>
+</div>
+<br/>
+<div id="prikaz" style="clear: both">
+</div>
+</body>
+</html>
