@@ -1,2 +1,43 @@
-/*Да се напише функција во JavaScript која како аргумент прима листа, а како резултат ја враќа листата
-каде се избришани дупликатите.*/
+<!-- Да се напише функција во JavaScript која како аргумент прима листа, а како резултат ја враќа листата
+каде се избришани дупликатите.
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1</title>
+    <script>
+        function removeDuplicates() {
+            var array = document.getElementById('myInput').value;
+            var elements = array.split(',');
+            var newArray = [];
+            var isDuplicate;
+            for (let i = 0; i < elements.length; i++) {
+                isDuplicate = false;
+                for (let j = 0; j < newArray.length; j++) {
+                    if (elements[i] === newArray[j]) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (isDuplicate === false) {
+                    newArray.push(elements[i]);
+                }
+            }
+            // alert("Modified List:\n" + newArray.join(', '));
+            console.log("Modified List:\n" + newArray.join(', '));
+        }
+    </script>
+</head>
+<body>
+<div>
+    <label>
+        <div>Enter your list:</div>
+        <input type="text" id="myInput">
+    </label>
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+    <div><em>Separate each element with only a comma in between.</em></div>
+    <div><em>ex. 1,2,3,4,1,1,2</em></div>
+</div>
+</body>
+</html>
