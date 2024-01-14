@@ -1,6 +1,74 @@
-/*Да се изработи форма за приказ на опции со check box или radio button. Формата се состои од
+<!-- Да се изработи форма за приказ на опции со check box или radio button. Формата се состои од
 едно поле за внесување на текст, една select компонента и едно копче.
 Во полето Items се внесуваат имињата на опциите кои сакаме да ги прикажеме, одделени со
 запирка. Од select полето бираме тип (Radio button или Check box). По притискање на копчето
 „Прикажи“ опциите внесени во полето Items се прикажуваат во соодветен тип.
-*/
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #tip{
+            margin-left: 4px;
+        }
+        #type{
+            width: 164px;
+        }
+        #show{
+          margin-left: 143px;
+        }
+        div{
+            margin-bottom: 15px;
+        }
+    </style>
+    <script>
+        function generateOptions() {
+            var opt = document.getElementById("text").value;
+            var tip = document.getElementById("type").value;
+            var shSel = document.getElementById("showSelected");
+            shSel.innerHTML = '';
+            var nr = opt.split(",");
+            if (tip === "Checkbox") {
+                for (let i = 0; i < nr.length; i++) {
+                    var inputElCheck = document.createElement("input");
+                    inputElCheck.type = "checkbox";
+                    var infoCheck=document.createTextNode(nr[i]);
+                    shSel.appendChild(inputElCheck);
+                    shSel.appendChild(infoCheck);
+                }
+            } else if (tip === "Radio button") {
+                for (let i = 0; i < nr.length; i++) {
+                    var inputElRadio = document.createElement("input");
+                    inputElRadio.type = "radio";
+                    inputElRadio.name = "radioGroup";
+                    var infoRadio=document.createTextNode(nr[i]);
+                    shSel.appendChild(inputElRadio);
+                    shSel.appendChild(infoRadio);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <label>Items:
+    <input type="text" id="text">
+    </label>
+</div>
+<div>
+    <label id="tip">Type:
+    <select id="type">
+        <option>Checkbox</option>
+        <option>Radio button</option>
+    </select>
+    </label>
+</div>
+<div>
+    <button id="show" onclick="generateOptions()">Прикажи</button>
+</div>
+<div id="showSelected">
+</div>
+</body>
+</html>
