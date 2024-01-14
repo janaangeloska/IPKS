@@ -1,4 +1,4 @@
-/*Во оваа задача треба да се направи игра слична на играта меморија. Екранот на играта
+<!-- Во оваа задача треба да се направи игра слична на играта меморија. Екранот на играта
 е составен од табела, со 4х4 полиња. На почетокот на играта сите полиња се „затворени“
 (прикажана е слика која претставува позадина на полињата). При првиот потег играчот клика на
 едно од полињата и тоа се „отвара“ (се појавува сликата која ја крие полето). При
@@ -7,4 +7,139 @@
 при секој нареден потег се затвора прво отвореното поле од тие две. Ако во ист
 момент има отворено полиња кој кријат иста слика тие остануваат отворени до крајот на играта.
 Играта завршува кога ќе бидат отворени сите полиња. Под играта се наоѓа копче „RESET“ која ја
-рестартира целата игра.*/
+рестартира целата игра.
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Memorija</title>
+    <style>
+        img{
+            width: 120px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+<h1>Meморија</h1>
+<div style="text-align:left; float:left">
+    <table border="1">
+        <tr>
+            <td id="t11"><img onclick="uncover(this)" src="cover.jpg"/></td>
+            <td id="t12"><img onclick="uncover(this)" src=""/></td>
+            <td id="t13"><img onclick="uncover(this)" src=""/></td>
+            <td id="t14"><img onclick="uncover(this)" src=""/></td>
+        </tr>
+        <tr>
+            <td id="t21"><img onclick="uncover(this)" src=""/></td>
+            <td id="t22"><img onclick="uncover(this)" src=""/></td>
+            <td id="t23"><img onclick="uncover(this)" src=""/></td>
+            <td id="t24"><img onclick="uncover(this)" src=""/></td>
+        </tr>
+        <tr>
+            <td id="t31"><img onclick="uncover(this)" src=""/></td>
+            <td id="t32"><img onclick="uncover(this)" src=""/></td>
+            <td id="t33"><img onclick="uncover(this)" src=""/></td>
+            <td id="t34"><img onclick="uncover(this)" src=""/></td>
+        </tr>
+        <tr>
+            <td id="t41"><img onclick="uncover(this)" src=""/></td>
+            <td id="t42"><img onclick="uncover(this)" src=""/></td>
+            <td id="t43"><img onclick="uncover(this)" src=""/></td>
+            <td id="t44"><img onclick="uncover(this)" src=""/></td>
+        </tr>
+    </table>
+    <button onclick="reset()"> RESET</button>
+</div>
+<br/>
+
+<script>
+    var ids = ['t11', 't12', 't13','t14', 't21','t22','t23', 't24', 't31', 't32', 't33', 't34', 't41', 't42', 't43', 't44'];
+    const pictures = [
+        'coal.jpg',
+        'diamond.jpg',
+        'emerald.jpg',
+        'gold.jpg',
+        'iron.jpg',
+        'netherite.jpg',
+        'redstone.jpg',
+        'lapis.jpg',
+        'coal.jpg',
+        'diamond.jpg',
+        'emerald.jpg',
+        'gold.jpg',
+        'iron.jpg',
+        'netherite.jpg',
+        'redstone.jpg',
+        'lapis.jpg'
+    ];
+
+
+    var count = 0
+    var guessed = 0;
+    function uncover(element){
+
+        if(window.getComputedStyle(element).opacity ==='1') {
+            return;
+        }
+
+        if(count===2){
+            count = 0;
+
+            var all = document.getElementsByTagName('img');
+            var opened = [];
+            for (i=0; i<all.length; i++){
+                if(all[i].style.opacity === "1")
+                    opened.push(all[i]);
+            }
+
+            if(opened[0].attributes.src.value === opened[1].attributes.src.value){
+                opened[0].style.opacity = "0.9";
+                opened[1].style.opacity = "0.9";
+
+                guessed++;
+                if(guessed===8)
+                    alert("Congratulations! You won!");
+                return;
+            }
+
+            opened[0].style.opacity = "0";
+            opened[1].style.opacity = "0";
+
+            return;
+        }
+
+        element.style.opacity = "1";
+        count++;
+
+    }
+    function shuffle(){
+        for (let i = pictures.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp = pictures[i];
+            pictures[i] = pictures[j];
+            pictures[j] = temp;
+        }
+
+        for (i=0; i<16; i++){
+            document.getElementById(ids[i])
+                .style
+                .backgroundImage = "url(cover.jpg)";
+        }
+    }
+
+    window.onload = function (){
+        reset();
+    }
+
+    function reset(){
+        shuffle();
+        for (i=0; i<16; i++) {
+            document.querySelector(`td#${ids[i]} img`).src = pictures[i];
+            document.querySelector(`td#${ids[i]} img`).style.opacity = "0";
+        }
+    }
+</script>
+</body>
