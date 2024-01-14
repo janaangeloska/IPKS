@@ -1,7 +1,122 @@
-/*Да се креира поле од објекти, каде секој објект репрезентира книга со следните
+<!-- Да се креира поле од објекти, каде секој објект репрезентира книга со следните
 својства title (string), author (string), и alreadyRead (boolean кој означува дали е прочитана или не).
 Да се изминaт сите објекти од полето и за секој објект да се испечати авторот, името на книгата и
 врз основа на тоа дали е прочитана или не, да се испечати соодветна порака.
 Пр.
 'You already read "The Hobbit" by J.R.R. Tolkien'
-'You still need to read "The Lord of the Rings" by J.R.R. Tolkien.'*/
+'You still need to read "The Lord of the Rings" by J.R.R. Tolkien.'
+ -->
+ 
+<!--SO USER INPUT-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4</title>
+    <script>
+        class Book{
+            title;
+            author;
+            alreadyRead;
+
+            constructor(title, author, alreadyRead) {
+                this.title = title;
+                this.author = author;
+                this.alreadyRead = alreadyRead;
+            }
+            displayBook(){
+                if(this.alreadyRead==="true"){
+                    console.log("You already read \"" +this.title + "\" by "+this.author);
+                }
+                else{
+                    console.log("You still need to read \"" +this.title + "\" by "+this.author);
+                }
+            }
+        }
+        const books=[];
+        function add(){
+            var titl = document.getElementById('naslov').value;
+            var auth = document.getElementById('avtor').value;
+            var stat = document.getElementById('status').value;
+            const newBook=new Book(titl,auth,stat);
+            books.push(newBook);
+            newBook.displayBook();
+            console.log(books);
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <label>
+        <div>Title of book:</div>
+        <input type="text" id="naslov">
+    </label>
+    <label>
+        <div>Author:</div>
+        <input type="text" id="avtor">
+    </label>
+    <label>
+        <div>Already read?</div>
+        <select id="status">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+    </label>
+    <div>
+        <button onclick="add()">Add</button>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+<!--
+
+SO VEKJE DEFINIRANI PODATOCI:
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        class Book{
+            title;
+            author;
+            alreadyRead;
+
+            constructor(title, author, alreadyRead) {
+                this.title = title;
+                this.author = author;
+                this.alreadyRead = alreadyRead;
+            }
+            displayBook(){
+                if(this.alreadyRead===true){
+                    console.log("You already read \"" +this.title + "\" by "+this.author);
+                }
+                else{
+                    console.log("You still need to read \"" +this.title + "\" by "+this.author);
+                }
+            }
+        }
+        const books = [
+            { title: "Serdarot", author: "Grigor Prlicev", alreadyRead: true },
+            { title: "The Great Gatsby", author: "F. Scott Fitzgerald", alreadyRead: false },
+            { title: "To Kill a Mockingbird", author: "Harper Lee", alreadyRead: true },
+        ];
+        for (let i = 0; i < books.length; i++) {
+            const book=new Book(books[i].title,books[i].author,books[i].alreadyRead);
+            book.displayBook();
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+-->
